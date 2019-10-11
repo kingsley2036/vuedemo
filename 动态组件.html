@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+
+<body>
+    <div id="app">
+       
+        <component :is="thisview"></component>
+      <button @click="handleview('A')">第一句</button>
+      <button @click="handleview('B')">第二句</button>
+      <button @click="handleview('C')">第三句</button>
+      <button @click="handleview('D')">第四句</button>
+    </div>
+
+
+    <script>
+        Vue.component('compA', {
+            template: `<div>
+            床前明月光                                            
+            </div>
+        `
+        })
+        Vue.component('compB', {
+            template: `<div>
+            疑是地上霜                                            
+            </div>
+        `
+        })
+        Vue.component('compC', {
+            template: `<div>
+            举头望明月                                            
+            </div>
+        `
+        })
+        Vue.component('compD', {
+            template: `<div>
+            低头思故乡                                           
+            </div>
+        `
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                thisview:'compA'
+            },
+            methods: {
+                handleview:function(value){
+                    this.thisview='comp'+value
+                }
+                
+            },
+        })
+    </script>
+
+
+</body>
+
+</html>

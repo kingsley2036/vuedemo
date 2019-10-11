@@ -12,7 +12,9 @@
 <body>
     <div id="app">
         <my-component>
-            <h3 slot="header">我是标题</h3>
+            <h3 slot="header">
+                <span> 我是标题</span>
+            </h3>
             <p>我是父组件的内容</p>
             <footer slot="footer">我是底部信息</footer>
         </my-component>
@@ -24,7 +26,10 @@
             template: `<div>
             <div>
                 <slot name='header'>
+              
+                    <p> 
                 如果父组件没有插入内容，我就作为默认出现
+                        </p>
                 </slot>
              </div>
             <div class="container">
@@ -34,7 +39,15 @@
                 <slot name='footer'> </slot>
           
             </div>
-        `
+        `,
+            mounted: function () {
+                var header = this.$slots.header;
+                var text = header[0].elm.innerText;
+                var html = header[0].elm.innerHTML;
+                console.log(header)
+                console.log(text)
+                console.log(html)
+            },
         })
         var app = new Vue({
             el: '#app',
